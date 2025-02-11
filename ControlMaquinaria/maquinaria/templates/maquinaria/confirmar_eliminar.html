@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Registro{% endblock %}
+
+{% block content %}
+    <h2>¿Estás seguro de que deseas eliminar "{{ objeto }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i> Eliminar
+        </button>
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            <i class="fa-solid fa-ban"></i> Cancelar
+        </a>
+    </form>
+{% endblock %}

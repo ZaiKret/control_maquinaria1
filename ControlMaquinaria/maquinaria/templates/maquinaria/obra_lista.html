@@ -1,0 +1,30 @@
+<!-- obra_lista.html -->
+{% extends 'base.html' %}
+{% block title %}Lista de Obras{% endblock %}
+{% block content %}
+    <h2>Lista de Obras</h2>
+    <a href="{% url 'generar_pdf_obras' %}" class="btn btn-danger mb-2">Exportar PDF</a>
+    <table class="table table-bordered datatable">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Responsable</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obra in obras %}
+                <tr>
+                    <td>{{ obra.nombre }}</td>
+                    <td>{{ obra.ubicacion }}</td>
+                    <td>{{ obra.responsable }}</td>
+                    <td>
+                        <a href="{% url 'editar_obra' obra.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'eliminar_obra' obra.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!-- ubicacion_lista.html -->
+{% extends 'base.html' %}
+{% block title %}Lista de Ubicaciones{% endblock %}
+{% block content %}
+    <h2>Lista de Ubicaciones</h2>
+    <a href="{% url 'generar_pdf_ubicaciones' %}" class="btn btn-danger mb-2">Exportar PDF</a>
+    <table class="table table-bordered datatable">
+        <thead class="table-dark">
+            <tr>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ubicacion in ubicaciones %}
+                <tr>
+                    <td>{{ ubicacion.direccion }}</td>
+                    <td>{{ ubicacion.ciudad }}</td>
+                    <td>
+                        <a href="{% url 'editar_ubicacion' ubicacion.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'eliminar_ubicacion' ubicacion.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

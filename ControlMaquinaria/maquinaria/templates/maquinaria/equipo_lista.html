@@ -1,0 +1,36 @@
+<!-- equipo_lista.html -->
+{% extends 'base.html' %}
+{% block title %}Lista de Equipos{% endblock %}
+{% block content %}
+    <h2>Lista de Equipos</h2>
+    <a href="{% url 'generar_pdf_equipos' %}" class="btn btn-danger mb-2">Exportar PDF</a>
+    <table class="table table-bordered datatable">
+        <thead class="table-dark">
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Obra</th>
+                <th>Responsable</th>
+                <th>Fecha Registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipo in equipos %}
+                <tr>
+                    <td>{% if equipo.foto %}<img src="{{ equipo.foto.url }}" width="50">{% endif %}</td>
+                    <td>{{ equipo.nombre }}</td>
+                    <td>{{ equipo.ubicacion }}</td>
+                    <td>{{ equipo.obra }}</td>
+                    <td>{{ equipo.responsable }}</td>
+                    <td>{{ equipo.fecha_registro }}</td>
+                    <td>
+                        <a href="{% url 'editar_equipo' equipo.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'eliminar_equipo' equipo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

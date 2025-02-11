@@ -1,0 +1,30 @@
+<!-- responsable_lista.html -->
+{% extends 'base.html' %}
+{% block title %}Lista de Responsables{% endblock %}
+{% block content %}
+    <h2>Lista de Responsables</h2>
+    <a href="{% url 'generar_pdf_responsables' %}" class="btn btn-danger mb-2">Exportar PDF</a>
+    <table class="table table-bordered datatable">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for responsable in responsables %}
+                <tr>
+                    <td>{{ responsable.nombre }}</td>
+                    <td>{{ responsable.cargo }}</td>
+                    <td>{{ responsable.telefono }}</td>
+                    <td>
+                        <a href="{% url 'editar_responsable' responsable.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'eliminar_responsable' responsable.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

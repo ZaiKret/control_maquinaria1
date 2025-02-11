@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Registro</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="btn btn-success">
+            <i class="fa-solid fa-save"></i> Guardar
+        </button>
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Cancelar
+        </a>
+    </form>
+{% endblock %}
